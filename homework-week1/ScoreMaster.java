@@ -31,7 +31,7 @@ public class ScoreMaster {
 
         System.out.println("请输入共有多少年的成绩：");
 
-        int yearCount = scanner.nextInt();
+        int yearCount = scanner.nextInt(); //输入年数
 
         double[][] scores = new double[yearCount][totalScoreCount];
 
@@ -54,7 +54,7 @@ public class ScoreMaster {
 
             int year = 0;
             switch (oprtId) {
-                case 1:
+                case 1: //某年求最好成绩
                     // 让用户输入指定的年份
                     System.out.println("请输入要计算第几年的最好成绩");
                     year = scanner.nextInt();
@@ -66,7 +66,6 @@ public class ScoreMaster {
                     // 指定年份的最好成绩的编号，开始假设是0
                     int bestOfYearScoreId = 0;
                     // 循环指定年份的成绩，找出最好的成绩
-                    // TODO：如果有两门课的成绩一样，而且都是最高的，怎么办？
                     for (int i = 1; i < totalScoreCount; i++) {
                         if (scores[year][bestOfYearScoreId] < scores[year][i]) {
                             bestOfYearScoreId = i;
@@ -74,7 +73,7 @@ public class ScoreMaster {
                     }
                     System.out.println("第" + (year + 1) + "年成绩最好的科目为" + names[bestOfYearScoreId] + "，成绩为" + scores[year][bestOfYearScoreId] + "。");
                     break;
-                case 2:
+                case 2: //求某年的平均成绩
                     System.out.println("请输入要计算第几年的平均成绩");
                     year = scanner.nextInt();
                     if (year <= 0 || yearCount < year) {
@@ -89,7 +88,7 @@ public class ScoreMaster {
                     double avgOfYear = totalCountForAvg / totalScoreCount;
                     System.out.println("第" + (year + 1) + "年的平均成绩为" + avgOfYear + "。");
                     break;
-                case 3:
+                case 3: //求所有年份最好成绩
                     int bestYear = 0;
                     int bestScore = 0;
 
@@ -101,10 +100,9 @@ public class ScoreMaster {
                             }
                         }
                     }
-                    // 视频中代码有错误，应该是使用 bestYear 而不是 year
                     System.out.println("历年最好成绩为第" + (bestYear + 1) + "年的" + names[bestScore] + "，成绩为" + scores[bestYear][bestScore] + "。");
                     break;
-                case 4:
+                case 4: //求某门课历年最好成绩
                     System.out.println("请输入科目编号");
                     int subjectId = scanner.nextInt();
                     if (subjectId <= 0 || totalScoreCount < subjectId) {

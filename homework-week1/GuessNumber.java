@@ -16,35 +16,38 @@ public class GuessNumber {
         int rangeEnd = 50;
         int guessTotal = 5;
 
-        // 游戏统计
-        int totalGameCount = 0;
-        int totalCorrectCount = 0;
+        int totalGameCount = 0;//
+        int totalCorrectCount = 0;//猜对次数
 
-        // 是否结束游戏
+        // 设置一个flag，方便后续循环与跳出循环
         boolean stopGame = false;
 
         while (!stopGame) {
-            // 初始化本次游戏的变量
+            // 生成随机数过程
             int guessLeft = guessTotal;
             int mod = rangeEnd - rangeStart;
-            double randNum = Math.random();
-            int num = ((int) (randNum * rangeEnd * 100)) % mod;
-            num += rangeStart;
-            if (num <= rangeStart) {
-                num = rangeStart + 1;
-            }
-            if (num >= rangeEnd) {
-                num = rangeEnd - 1;
-            }
+            double randNum = Math.random();//生成一个0到1之间的随机数
+            int num = ((int) (randNum * rangeEnd * 100)) % mod;//生成了一个0到20之间的随机数
+            num += rangeStart;//随机数范围在30到50之间
+
+            //确保随机数在范围内
+//            if (num <= rangeStart) {
+//                num = rangeStart + 1;
+//            }
+//            if (num >= rangeEnd) {
+//                num = rangeEnd - 1;
+//            }
+
 
             System.out.println("=================== 猜 数 字 ===================");
-            System.out.println("目标数已经生成，数字在" + rangeStart + "到" + rangeEnd + "之间，" +
+            System.out.println("随机数已经生成，范围为" + rangeStart + "~" + rangeEnd + "，" +
                     "不包括这两个数。共有" + guessTotal + "次猜测的机会。输入-1随时结束游戏。");
 
-            // 本次游戏是否开始了
+            // 游戏开始
             boolean gameStart = true;
-            // 本次是否猜中数字
-            boolean guessCorrect = false;
+            // 是否猜中数字
+            boolean guessCorrect = false; //是否猜中
+
             while (guessLeft > 0) {
                 System.out.println("还有" + guessLeft + "次机会，请输入猜测的数字，回车确认");
                 int guessNum = in.nextInt();
@@ -83,6 +86,6 @@ public class GuessNumber {
             }
         }
 
-        System.out.println("共进行了" + totalGameCount + "次游戏，其中正确的为" + totalCorrectCount + "次");
+        System.out.println("共进行了" + totalGameCount + "次游戏，正确次数为" + totalCorrectCount + "次");
     }
 }
